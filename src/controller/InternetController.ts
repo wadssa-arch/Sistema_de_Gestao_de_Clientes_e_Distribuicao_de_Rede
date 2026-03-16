@@ -64,7 +64,7 @@ export class InternetController implements InternetRepository {
         if (plano != null) {
             this.listarPlanos.splice(this.listarPlanos.indexOf(plano), 1);
             console.log(colors.fg.green,
-                "\nO Plano ID: " + id + " foi deletado com sucesso!",
+                "\nO Plano ID: " + id + " foi cancelado com sucesso!",
                 colors.reset);
 
         } else {
@@ -74,37 +74,7 @@ export class InternetController implements InternetRepository {
         }
     }
 
+
+
    
-    sacar(id: number, valor: number): void {
-        let plano = this.buscarNoArray(id);
-        if (plano != null) {
-            
-            console.log(colors.fg.green, "\nAjuste de débito realizado no Plano " + id, colors.reset);
-        } else {
-            console.log(colors.fg.red, "\nID: " + id + " não encontrado!", colors.reset);
-        }
-    }
-
-    depositar(id: number, valor: number): void {
-        let plano = this.buscarNoArray(id);
-        if (plano != null) {
-            
-            console.log(colors.fg.green, "\nCrédito realizado no Plano " + id, colors.reset);
-        } else {
-            console.log(colors.fg.red, "\nID: " + id + " não encontrado!", colors.reset);
-        }
-    }
-
-    transferir(idOrigem: number, idDestino: number, valor: number): void {
-        
-        let origem = this.buscarNoArray(idOrigem);
-        let destino = this.buscarNoArray(idDestino);
-        
-        if (origem != null && destino != null) {
-            console.log(colors.fg.green, "\nTransferência de titularidade/créditos realizado!", colors.reset);
-        
-        } else {
-            console.log(colors.fg.red, "\nOrigem ou Destino não encontrados!", colors.reset);
-        }
-    }
 }

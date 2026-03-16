@@ -66,7 +66,7 @@ export class InternetController implements InternetRepository {
             console.log(colors.fg.green,
                 "\nO Plano ID: " + id + " foi deletado com sucesso!",
                 colors.reset);
-                
+
         } else {
             console.log(colors.fg.red,
                 "\nO Plano ID: " + id + " não foi encontrado!",

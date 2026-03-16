@@ -5,9 +5,9 @@ export class PlanoEmpresarial extends Internet {
 
     private _velocidade: number; 
 
-    constructor(id: number, cliente: string, tipo: number, fibra: string,
+    constructor(id: number, cliente: string, tipo: number, tecnologia: string,
         preco: number, velocidade: number) {
-        super(id, cliente, tipo, fibra, preco);
+        super(id, cliente, tipo, tecnologia, preco);
         this._velocidade = velocidade;
     }
 

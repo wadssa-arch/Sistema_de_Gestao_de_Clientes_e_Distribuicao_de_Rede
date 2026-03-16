@@ -7,17 +7,18 @@ export abstract class Internet {
     private _id: number;
     private _cliente: string;
     private _tipo: number;
-    private _fibra: string;
+    private _tecnologia: string;
     private _preco: number;
 
-    constructor(id: number, cliente: string, tipo: number, fibra: string, preco: number) {
+    constructor(id: number, cliente: string, tipo: number, tecnologia: string, preco: number) {
         this._id = id;
         this._cliente = cliente;
         this._tipo = tipo;
-        this._fibra = fibra;
+        this._tecnologia = tecnologia;
         this._preco = preco;
     }
 
+    
 
     public get id() {
          return this._id;
@@ -41,12 +42,12 @@ export abstract class Internet {
     public set tipo(tipo: number) { 
         this._tipo = tipo; }
 
-    public get fibra() {
-         return this._fibra;
+    public get tecnologia() {
+         return this._tecnologia;
     }
 
-    public set fibra(fibra: string) {
-         this._fibra = fibra; 
+    public set tecnologia(tecnologia: string) {
+         this._tecnologia = tecnologia; 
     }
 
     public get preco() { 
@@ -68,7 +69,7 @@ export abstract class Internet {
         console.log("ID de Identificação: " + this._id);
         console.log("Nome do Cliente: " + this._cliente);
         console.log("Tipo da Instalação: " + (this._tipo === 1 ? "Residencial" : "Empresarial"));
-        console.log("Tecnologia: " + this._fibra);
+        console.log("Tecnologia: " + this._tecnologia);
         console.log("Mensalidade: R$ " + this._preco.toFixed(2));
         console.log(colors.reset);
     }

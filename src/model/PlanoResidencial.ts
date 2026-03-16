@@ -4,11 +4,13 @@ export class PlanoResidencial extends Internet {
 
     private _planoResidencia: boolean; 
 
-    constructor(id: number, cliente: string, tipo: number, fibra: string,
+    constructor(id: number, cliente: string, tipo: number, tecnologia: string,
         preco: number, planoResidencia: boolean) {
-        super(id, cliente, tipo, fibra, preco); 
+        super(id, cliente, tipo, tecnologia, preco); 
         this._planoResidencia = planoResidencia;
     }
+    
+
 
     public get planoResidencia() {
         return this._planoResidencia;

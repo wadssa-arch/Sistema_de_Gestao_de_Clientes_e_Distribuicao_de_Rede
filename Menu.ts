@@ -8,9 +8,14 @@ export function main(){
 
     let planos: InternetController = new InternetController();
 
-    let opcao, id, tipo, preco, velocidade: number;
-    let cliente, tecnologia: string;
-    let residencialAtivo: boolean;
+    let opcao: number;
+    let id: number;
+    let tipo: number;
+    let preco: number;
+    let velocidade: number;
+    let cliente: string;
+    let tecnologia: string;
+    let planoResidencia: boolean;
 
     const tiposPlanos = ['Plano Residencial', 'Plano Empresarial'];
 
@@ -73,20 +78,10 @@ export function main(){
                 switch (tipo) {
 
                     case 1:
-                        residencialAtivo = readlineSync.keyInYN("O plano está ativo? ");
-
-                        planos.cadastrar(
-                            new PlanoResidencial(
-                                planos.gerarId(),
-                                cliente,
-                                tipo,
-                                tecnologia,
-                                preco,
-                                residencialAtivo
-                            )
-                        );
-                        break;
-
+                            planoResidencia = readlineSync.keyInYN("O plano está ativo? ");
+                            planos.cadastrar( new PlanoResidencial(planos.gerarId(), cliente, tipo, tecnologia, preco, planoResidencia));
+                            break;
+                            
                     case 2:
                         console.log("Digite a Velocidade Dedicada (Mbps):");
                         velocidade = readlineSync.questionInt("");
@@ -103,81 +98,80 @@ export function main(){
                         );
                         break;
                 }
-                break;
+        
 
-            case 2:
-                console.log("\n\nListar todos os Assinantes\n\n");
-                planos.listarTodos();
-                break;
+                    case 3:
+                        console.log("\n\nListar todos os Assinantes\n\n");
+                        planos.listarTodos();
+                        break;
 
-            case 3:
-                console.log(colors.fg.whitestrong,"\n\nBuscar por ID\n", colors.reset);
+                    case 4:
+                        console.log(colors.fg.whitestrong,"\n\nBuscar por ID\n", colors.reset);
 
-                console.log("Digite o ID do plano: ");
-                id = readlineSync.questionInt("");
+                        console.log("Digite o ID do plano: ");
+                        id = readlineSync.questionInt("");
 
-                planos.procurarPorId(id);
-                break;
+                        planos.procurarPorId(id);
+                        break;
 
-            case 4:
+                case 5:
 
-                console.log(colors.fg.whitestrong,"\n\nAtualizar Dados do Plano\n\n",colors.reset);
+                    console.log(colors.fg.whitestrong,"\n\nAtualizar Dados do Plano\n\n",colors.reset);
 
-                console.log("Digite o ID do plano");
-                id = readlineSync.questionInt("");
+                    console.log("Digite o ID do plano");
+                    id = readlineSync.questionInt("");
 
-                let plano = planos.buscarNoArray(id);
+                    let plano = planos.buscarNoArray(id);
 
-                if(plano != null){
+                    if(plano != null){
 
-                    console.log("Digite o Nome do Cliente: ");
-                    cliente = readlineSync.question("");
+                        console.log("Digite o Nome do Cliente: ");
+                        cliente = readlineSync.question("");
 
-                    console.log("Digite a Tecnologia: ");
-                    tecnologia = readlineSync.question("");
+                        console.log("Digite a Tecnologia: ");
+                        tecnologia = readlineSync.question("");
 
-                    tipo = plano.tipo;
+                        tipo = plano.tipo;
 
-                    console.log("Digite o preço da mensalidade (R$): ");
-                    preco = readlineSync.questionFloat("");
+                        console.log("Digite o preço da mensalidade (R$): ");
+                        preco = readlineSync.questionFloat("");
 
                     switch(tipo){
 
-                        case 1:
-                            residencialAtivo = readlineSync.keyInYN("O plano está ativo? ");
+                    case 1:
+                            planoResidencia = readlineSync.keyInYN("O plano está ativo? ");
 
                             planos.atualizar(
-                                new PlanoResidencial(id, cliente, tipo, tecnologia, preco, residencialAtivo)
-                            );
+                                new PlanoResidencial(id, cliente, tipo, tecnologia, preco, planoResidencia));
                             break;
 
-                        case 2:
+                     case 2:
                             console.log("Digite a velocidade dedicada (Mbps): ");
                             velocidade = readlineSync.questionInt("");
 
                             planos.atualizar(
-                                new PlanoEmpresarial(id, cliente, tipo, tecnologia, preco, velocidade)
-                            );
-                            break;
+                                new PlanoEmpresarial(id, cliente, tipo, tecnologia, preco, velocidade) );
+                            
+                                break;
                     }
 
                 }else{
                     console.log(colors.fg.red,"\nO ID " + id + " nao foi encontrado!",colors.reset);
                 }
 
-                break;
+                    break;
 
-            case 5:
-                console.log(colors.fg.whitestrong,"\n\nCancelar Assinatura\n\n", colors.reset);
+                case 3:
+                    console.log(colors.fg.whitestrong,"\n\nCancelar Assinatura\n\n", colors.reset);
 
-                console.log("Digite o ID:");
-                id = readlineSync.questionInt("");
+                    console.log("Digite o ID:");
+                    id = readlineSync.questionInt("");
 
-                planos.deletar(id);
-                break;
+                    planos.deletar(id);
+                    break;
 
-            default:
-                console.log("\n\nOpção Inválida!\n\n");
+                default:
+                    console.log("\n\nOpção Inválida!\n\n");
         }
     }
 }

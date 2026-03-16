@@ -1,4 +1,4 @@
-import { colors } from "../Util/Colors";
+import { colors } from "../../Util/Colors";
 
 
 

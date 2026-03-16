@@ -1,26 +1,33 @@
 import { Internet } from "./Internet";
 
-
 export class PlanoEmpresarial extends Internet {
 
-    private _velocidade: number; 
+    private _planoEmpresa: number; 
 
-    constructor(id: number, cliente: string, tipo: number, tecnologia: string,
-        preco: number, velocidade: number) {
-        super(id, cliente, tipo, tecnologia, preco);
-        this._velocidade = velocidade;
+    constructor(
+        id: number,
+        cliente: string, 
+        tipo: number,
+        tecnologia: string,
+        preco: number,
+        planoEmpresa:number ) {
+        super(id, cliente, tipo, tecnologia, preco); 
+        this._planoEmpresa = planoEmpresa;
     }
+    
 
-    public get velocidade() {
-        return this._velocidade;
+
+    public get planoEmpresa() {
+        return this._planoEmpresa;
     }
-
-    public set velocidade(velocidade: number) {
-        this._velocidade = velocidade;
+        
+    public set planoEmpresa(planoEmpresa: number) { 
+        this._planoEmpresa = planoEmpresa;
     }
 
     public visualizar(): void {
         super.visualizar();
-        console.log("Velocidade Dedicada: " + this._velocidade.toFixed(2) + " Mbps");
+        console.log("Plano Empresarial Ativo:" +  (this._planoEmpresa === 1 ? "Sim" : "Não"));
+        
     }
 }
